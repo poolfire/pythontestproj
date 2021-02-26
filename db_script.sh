@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo -S apt update
-sudo apt install -y postgresql postgresql-contrib;
+#sudo -S apt update
+sudo -S apt install -y postgresql postgresql-contrib;
 sudo -u postgres createuser -s -e db_user
 echo "Changing password"
 sudo -u postgres psql postgres -c "ALTER USER db_user WITH ENCRYPTED PASSWORD 'DB_password'"
