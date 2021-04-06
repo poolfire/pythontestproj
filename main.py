@@ -82,7 +82,10 @@ def app_creation():
         command='sudo wget https://raw.githubusercontent.com/poolfire/pythontestproj/master/app_script.sh &&'
                 'bash app_script.sh')
 
-# please uncomment line in case you need to pass real app server address
+
+# please comment line
+# f"sudo sed -i 's/127.0.0.1:5000/{serverList['app']}:5000/g' /etc/nginx/sites-available/default && "
+# in case you need to use app server on the same host as nginx host
 def nginx_creation():
     connection = SSH()
     connection.run_sudo_command(
@@ -91,7 +94,7 @@ def nginx_creation():
         ssh_password=credentials['password'],
         command="sudo wget https://raw.githubusercontent.com/poolfire/pythontestproj/master/nginx_script.sh && "
                 "sudo bash nginx_script.sh && "
-                # f"sudo sed -i 's/127.0.0.1:5000/{serverList['app']}:5000/g' /etc/nginx/sites-available/default && "
+                f"sudo sed -i 's/127.0.0.1:5000/{serverList['app']}:5000/g' /etc/nginx/sites-available/default && "
                 "sudo systemctl restart nginx")
 
 
